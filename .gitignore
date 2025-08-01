@@ -1,0 +1,15 @@
+1
+domains.csv.bak
+domains.csv
+smtpkey
+smtpuser
+linux/smtp.runtimeconfig.json
+linux/smtp.dll
+linux/smtp
+linux/MimeKitLite.dll
+linux/MailKitLite.dll
+smtp.runtimeconfig.json
+smtp.exe
+smtp.dll
+MimeKitLite.dll
+MailKitLite.dll
