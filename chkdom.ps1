@@ -13,7 +13,6 @@ $dlist = @()
 $istime2pay = 0
 #$cred = New-Object System.Management.Automation.PSCredential($user, $pass)
 $res += "`nРезультат проверки доменов`n"
-#exit
 function sendmail ($text) {
 	#4 some weird reasons can't use 2 params (subj+body); bad delim/param def?
 	if ($mail) {Invoke-Expression "$smtp --body `"$text`""}
