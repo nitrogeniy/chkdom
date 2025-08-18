@@ -29,7 +29,7 @@ ForEach ($dom in $doms) {
 	$c1 = $c -replace '(?msi).*(paid-till|Registry Expiry Date):\s*(\S+).*', '$2'
 	$c = $c.Trim()
 	$c1 = $c1.Trim()
-	Write-Output "$c"
+	Write-Output "`t`t`t`t$c"
 	if ($c.length -eq $c1.length) {
 		$res += "data not found for domain $($dom.dom) ($($dom.date))"
 		continue
