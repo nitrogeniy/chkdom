@@ -18,7 +18,7 @@ function sendmail ($text) {
 	if ($mail) {Invoke-Expression "$smtp --body `"$text`""}
 }
 ForEach ($dom in $doms) {
-	Write-Output "d: $($dom.dom) d: $($dom.date)"
+	#Write-Output "d: $($dom.dom) d: $($dom.date)"
 	#get whois info
 	if ($linux) {
 		$c = $(whois $dom.dom | grep -i -E 'paid-till|Registry Expiry Date')
@@ -29,7 +29,7 @@ ForEach ($dom in $doms) {
 	$c1 = $c -replace '(?msi).*(paid-till|Registry Expiry Date):\s*(\S+).*', '$2'
 	$c = $c.Trim()
 	$c1 = $c1.Trim()
-	Write-Output "`t`t`t`t$c"
+	Write-Output "d: $($dom.dom)`t$c"
 	if ($c.length -eq $c1.length) {
 		$res += "data not found for domain $($dom.dom) ($($dom.date))"
 		continue
