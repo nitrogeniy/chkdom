@@ -10,6 +10,8 @@ $smtp = "$smt --server smtp.mail.ru --port 465 --user `"$user`" --password `"$pa
 $doms = Import-Csv -Delimiter ',' -path .\domains.csv
 $res = @()
 $dlist = @()
+$domsn = @()
+$domsnpath = '.\domains.new.csv'
 $istime2pay = 0
 #$cred = New-Object System.Management.Automation.PSCredential($user, $pass)
 $res += "`nРезультат проверки доменов`n"
@@ -34,6 +36,8 @@ ForEach ($dom in $doms) {
 		$res += "data not found for domain $($dom.dom) ($($dom.date))"
 		continue
 	}
+	$dom.date = $c1
+	$domsn += $dom
 	#compare dates
 	$diff = $((Get-Date $c1) - (Get-Date))
 	if ($diff.Days -le 30) {
@@ -42,6 +46,8 @@ ForEach ($dom in $doms) {
 		$dlist += "$($dom.dom) ($($dom.date))"
 	}
 }
+#export new data (some old domains will be lost)
+$domsn | Export-Csv -Path $domsnpath -Delimiter ',' -UseQuotes AsNeeded -NoTypeInformation
 #istime2pay
 if ($istime2pay -gt 0) {
 	$res += "В ожидании оплаты: $($dlist.length)"
