@@ -2,16 +2,17 @@ param(
 	[Parameter(Mandatory = $false)]
 	[System.String]$mail = ""
 )
+$path = $PSScriptRoot
 $linux = $($($Env:HOME).Substring(0,1)) -eq "/" ? 1 : 0
-$user = Get-Content .\smtpuser -Raw
-$pass = Get-Content .\smtpkey -Raw
-$smt = $linux ? "./linux/smtp" : ".\smtp.exe"
+$user = Get-Content $path\smtpuser -Raw
+$pass = Get-Content $path\smtpkey -Raw
+$smt = $linux ? "$path/linux/smtp" : "$path\smtp.exe"
 $smtp = "$smt --server smtp.mail.ru --port 465 --user `"$user`" --password `"$pass`" --fromfiled `"it daemon`" --to $user --tofield `"it dep`" --subject `"Отчёт: проверка доменов`""
-$doms = Import-Csv -Delimiter ',' -path .\domains.csv
+$doms = Import-Csv -Delimiter ',' -path $path\domains.csv
 $res = @()
 $dlist = @()
 $domsn = @()
-$domsnpath = '.\domains.new.csv'
+$domsnpath = "$path\domains.new.csv"
 $istime2pay = 0
 #$cred = New-Object System.Management.Automation.PSCredential($user, $pass)
 $res += "`nРезультат проверки доменов`n"
