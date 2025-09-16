@@ -1,6 +1,7 @@
 1
 domains.csv.bak
 domains.csv
+domains.new.csv
 smtpkey
 smtpuser
 linux/smtp.runtimeconfig.json
