@@ -43,7 +43,7 @@ ForEach ($dom in $doms) {
 	$diff = $((Get-Date $c1) - (Get-Date))
 	if ($diff.Days -le 30) {
 		$istime2pay += 1
-		#add to due list
+		# add to due list
 		$dlist += "$($dom.dom) ($($dom.date))"
 	}
 }
